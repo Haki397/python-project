@@ -19,19 +19,17 @@ class GestionImmoblier :
         vendeur = personne(id_personne, nom, prenom, telephone, email, "vendeur")
         self.vendeur.append(vendeur)
         print(f"Vendeur a etait ajoute avec succes : {vendeur}")
-    
     def ajouter_acheteur(self, nom, prenom, telephone, email):
         id_personne = len(self.acheteur) + 1
         acheteur = personne(id_personne, nom, prenom, telephone, email, "acheteur")
         self.acheteur.append(acheteur)
         print(f"Acheteur a etait ajoute avec succes : {acheteur}")
-    
+
     def ajouter_locataire(self, nom, prenom, telephone, email):
         id_personne = len(self.locataire) + 1
         locataire = personne(id_personne, nom, prenom, telephone, email, "locataire")
         self.locataire.append(locataire)
         print(f"Locataire a etait ajoute avec succes : {locataire}")
-    
     def afficher_tous(self):
         print("Liste des vendeurs :")
         for vendeur in self.vendeur:
@@ -55,6 +53,7 @@ class GestionImmoblier :
         else: 
             exec(f"{c}.pop({i})")
         print(f" {'tous' if i is None else c} supprimé(s)")
+        #### la partie de la class de lappartement, magasin et terrain
 class Appartement:
     def __init__(self, id_appartement , adresse, superficie, prix):
         self.id = id_appartement
@@ -63,7 +62,6 @@ class Appartement:
         self.prix = prix
         self.photos_vendeur = []  # Liste des photos pour le vendeur avec coordonnées
         self.photos_locataire = []  # Liste des photos pour le locataire avec coordonnées
-    
     def ajouter_photo_vendeur(self, photo, coordonnees , prix, superficie,):
         """Ajoute une photo pour le vendeur avec ses coordonnées."""
         self.photos_vendeur.append({'photo': photo, 'coordonnees': coordonnees, 'prix': prix, 'superficie': superficie})
@@ -71,30 +69,36 @@ class Appartement:
     def ajouter_photo_locataire(self, photo, coordonnees, prix, superficie):
         """Ajoute une photo pour le locataire avec ses coordonnées."""
         self.photos_locataire.append({'photo': photo, 'coordonnees': coordonnees, 'prix': prix, 'superficie': superficie})
-
 class Magasin:
     def __init__(self, id_magasin):
         self.id = id_magasin
-        self.photos_vendeur = []  # Liste des photos pour le vendeur avec coordonnées
-        self.photos_locataire = []  # Liste des photos pour le locataire avec coordonnées
-    
+        self.photos_vendeur = []  
+        self.photos_locataire = []  
     def ajouter_photo_vendeur(self, photo, coordonnees, prix, superficie):
         """Ajoute une photo pour le vendeur avec ses coordonnées."""
         self.photos_vendeur.append({'photo': photo, 'coordonnees': coordonnees, 'prix': prix, 'superficie': superficie})
-    
     def ajouter_photo_locataire(self, photo, coordonnees, prix, superficie):
         """Ajoute une photo pour le locataire avec ses coordonnées."""
         self.photos_locataire.append({'photo': photo, 'coordonnees': coordonnees, 'prix': prix, 'superficie': superficie})
 class Terrain:
     def __init__(self, id_terrain):
         self.id = id_terrain
-        self.photos_vendeur = []  # Liste des photos pour le vendeur avec coordonnées
-        self.photos_locataire = []  # Liste des photos pour le locataire avec coordonnées
-    
+        self.photos_vendeur = [] 
+        self.photos_locataire = [] 
     def ajouter_photo_vendeur(self, photo, coordonnees, prix, superficie):
         """Ajoute une photo pour le vendeur avec ses coordonnées."""
         self.photos_vendeur.append({'photo': photo, 'coordonnees': coordonnees, 'prix': prix, 'superficie': superficie})
-    
     def ajouter_photo_locataire(self, photo, coordonnees, prix, superficie):
         """Ajoute une photo pour le locataire avec ses coordonnées."""
-        self.photos_locataire.append({'photo': photo, 'coordonnees': coordonnees, 'prix': prix, 'superficie': superficie})        
+        self.photos_locataire.append({'photo': photo, 'coordonnees': coordonnees, 'prix': prix, 'superficie': superficie}) 
+class BienImmobilier:
+    def __init__(self, id_bien, adresse, type_bien, surface, prix, statut="disponible"):
+        self.id_bien = id_bien
+        self.adresse = adresse
+        self.type_bien = type_bien  
+        self.surface = surface  
+        self.prix = prix
+        self.statut = statut  
+        self.description = ""
+    def __str__(self):
+        return f"{self.id_bien} - {self.type_bien} à {self.adresse} ({self.surface}m²) - {self.prix}Dh - {self.statut}"
